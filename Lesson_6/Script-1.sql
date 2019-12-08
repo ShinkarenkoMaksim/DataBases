@@ -10,14 +10,18 @@
 -- Под формулировкой "больше всех общался" принимаем отправленные сообщения выбранному пользователю (выбрал id=39)
 
 SELECT CONCAT(first_name, ' ', last_name) FROM users 
-WHERE id = (SELECT from_user_id FROM messages WHERE to_user_id = 39 GROUP BY from_user_id ORDER BY COUNT(*) DESC LIMIT 1);
--- (TODO) Если будет одинаковое количество сообщений от разных пользователей, то выведется только один пользователь
+WHERE id = (SELECT from_user_id FROM messages WHERE to_user_id = 39 AND from_user_id IN (
+	SELECT friend_id FROM friendship WHERE user_id = 39 AND status_id = 2
+) GROUP BY from_user_id ORDER BY COUNT(*) DESC LIMIT 1);
 
+-- (TODO) Если будет одинаковое количество сообщений от разных пользователей, то выведется только один пользователь
 
 
 -- 3. Подсчитать общее количество лайков, которые получили 10 самых молодых пользователей.
 
 SELECT COUNT(*) AS total_likes FROM likes WHERE target_id IN (SELECT * FROM (SELECT user_id FROM profiles ORDER BY birthday DESC LIMIT 10) AS t);
+-- Ответ на замечание - задание поставлено очень конкретное - посчитать полученные лайки. Если пользователь не получил ни одного лайка, 
+-- тогда зачем нам делать лишние чтения из БД и выполнять мат. операции?
 
 
 -- 4. Определить кто больше поставил лайков (всего) - мужчины или женщины?
