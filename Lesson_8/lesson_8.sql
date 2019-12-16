@@ -135,12 +135,12 @@ SELECT CONCAT(first_name, ' ', last_name)
 
 
 SELECT SUM(`count`) AS total_likes FROM (
-SELECT COUNT(*) AS `count`
-	FROM likes
-		JOIN profiles
-		ON profiles.user_id = likes.user_id
-	GROUP BY profiles.user_id
-	ORDER BY profiles.birthday DESC LIMIT 10) as A;
+	SELECT COUNT(likes.target_id) AS `count`
+		FROM profiles
+		LEFT JOIN likes
+			ON profiles.user_id = likes.target_id AND target_type_id = 2
+		GROUP BY profiles.user_id
+		ORDER BY profiles.birthday DESC LIMIT 10) as A;
 
 -- 4. Определить кто больше поставил лайков (всего) - мужчины или женщины?
 
@@ -149,10 +149,6 @@ CASE (SELECT sex FROM likes JOIN profiles ON likes.user_id = profiles.user_id GR
 	WHEN "f" THEN "Больше лайков поставили женщины"
 	WHEN "m" THEN "Больше лайков поставили мужчины"
 END;
-
-
-
-
 
 
 
