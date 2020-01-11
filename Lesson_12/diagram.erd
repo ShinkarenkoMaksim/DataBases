@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="diagram.erd">
+	<entities>
+		<data-source id="mysql8-16e66320113-158d7f04e17e3511">
+			<entity id="1" name="attributes_list" fq-name="park_shop.attributes_list" order="0" x="268" y="552">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="2" name="basket" fq-name="park_shop.basket" order="1" x="910" y="292">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="3" name="brands" fq-name="park_shop.brands" order="2" x="746" y="549">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="4" name="catalogs" fq-name="park_shop.catalogs" order="3" x="898" y="507">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="5" name="compares" fq-name="park_shop.compares" order="4" x="909" y="195">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="6" name="favorites" fq-name="park_shop.favorites" order="5" x="420" y="433">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="7" name="order_products" fq-name="park_shop.order_products" order="6" x="375" y="252">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="8" name="orders" fq-name="park_shop.orders" order="7" x="543" y="15">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="9" name="product_attributes" fq-name="park_shop.product_attributes" order="8" x="528" y="551">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="10" name="products" fq-name="park_shop.products" order="9" x="726" y="228">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="11" name="profiles" fq-name="park_shop.profiles" order="10" x="894" y="30">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="12" name="shops" fq-name="park_shop.shops" order="11" x="335" y="30">
+				<path name="park_shop"/>
+			</entity>
+			<entity id="13" name="users" fq-name="park_shop.users" order="12" x="730" y="59">
+				<path name="park_shop"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="product_attributes_attribute_id_fk" fq-name="park_shop.product_attributes.product_attributes_attribute_id_fk" type="fk" pk-ref="1" fk-ref="9"/>
+		<relation name="products_brand_id_fk" fq-name="park_shop.products.products_brand_id_fk" type="fk" pk-ref="3" fk-ref="10"/>
+		<relation name="products_catalog_id_fk" fq-name="park_shop.products.products_catalog_id_fk" type="fk" pk-ref="4" fk-ref="10"/>
+		<relation name="order_products_order_id_fk" fq-name="park_shop.order_products.order_products_order_id_fk" type="fk" pk-ref="8" fk-ref="7"/>
+		<relation name="basket_product_id_fk" fq-name="park_shop.basket.basket_product_id_fk" type="fk" pk-ref="10" fk-ref="2"/>
+		<relation name="compares_product_id_fk" fq-name="park_shop.compares.compares_product_id_fk" type="fk" pk-ref="10" fk-ref="5"/>
+		<relation name="favorites_product_id_fk" fq-name="park_shop.favorites.favorites_product_id_fk" type="fk" pk-ref="10" fk-ref="6"/>
+		<relation name="order_products_product_id_fk" fq-name="park_shop.order_products.order_products_product_id_fk" type="fk" pk-ref="10" fk-ref="7"/>
+		<relation name="product_attributes_product_id_fk" fq-name="park_shop.product_attributes.product_attributes_product_id_fk" type="fk" pk-ref="10" fk-ref="9"/>
+		<relation name="orders_shop_id_fk" fq-name="park_shop.orders.orders_shop_id_fk" type="fk" pk-ref="12" fk-ref="8"/>
+		<relation name="basket_user_id_fk" fq-name="park_shop.basket.basket_user_id_fk" type="fk" pk-ref="13" fk-ref="2"/>
+		<relation name="compares_user_id_fk" fq-name="park_shop.compares.compares_user_id_fk" type="fk" pk-ref="13" fk-ref="5"/>
+		<relation name="favorites_user_id_fk" fq-name="park_shop.favorites.favorites_user_id_fk" type="fk" pk-ref="13" fk-ref="6"/>
+		<relation name="orders_user_id_fk" fq-name="park_shop.orders.orders_user_id_fk" type="fk" pk-ref="13" fk-ref="8"/>
+		<relation name="profiles_user_id_fk" fq-name="park_shop.profiles.profiles_user_id_fk" type="fk" pk-ref="13" fk-ref="11"/>
+	</relations>
+</diagram>
